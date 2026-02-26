@@ -33,4 +33,63 @@
  */
 export function calculateDosaOrder(type, quantity = 1, isSpicy = false) {
   // Your code here
+
+  const dosaPrices = {
+    plain: 40,
+    masala: 60,
+    onion: 50,
+    butter: 70,
+    paper: 90,
+    cheese: 80,
+  };
+  // extra price
+  const extraPrice = isSpicy ? 10 : 0;
+
+  if (typeof type !== "string" || !dosaPrices[type]) return null;
+  if (typeof quantity !== "number" || quantity <= 0 || isNaN(quantity))
+    return null;
+
+  // single dosa price
+  const price = dosaPrices[type];
+  // single dosa price and isSpicy
+  const pricePerDosa = price + extraPrice;
+  // total price
+  const total = pricePerDosa * quantity;
+
+  // total value send
+  return {
+    type,
+    quantity,
+    pricePerDosa,
+    total,
+  };
+
+  // let total;
+  //
+  // let plain = 40,
+  //   masala = 60,
+  //   onion = 50,
+  //   butter = 70,
+  //   paper = 90,
+  //   cheese = 80;
+
+  // if (typeof type !== "string" || quantity < 1 || isNaN(quantity)) return null;
+
+  // // console.log(type);
+
+  // if (type === "plain") {
+  //   total += plain * quantity + extraPrice;
+  // } else if (type === "masala") {
+  //   total += masala * quantity + extraPrice;
+  // } else if (type === "onion") {
+  //   total += onion * quantity + extraPrice;
+  // } else if (type === "butter") {
+  //   total += butter * quantity + extraPrice;
+  // } else if (type === "paper") {
+  //   total += paper * quantity + extraPrice;
+  // } else {
+  //   total += cheese * quantity + extraPrice;
+  // }
+
+  // return { type, quantity, pricePerDosa: 70, total };
 }
